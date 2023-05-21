@@ -1,0 +1,14 @@
+{
+"type": "FeatureCollection",
+"name": "POI_J",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::2363" } },
+"features": [
+{ "type": "Feature", "properties": { "NAME": "江苏六合国家地质公园" }, "geometry": { "type": "Point", "coordinates": [ 39681498.918876685202122, 3594985.79630820825696 ] } },
+{ "type": "Feature", "properties": { "NAME": "南京江宁汤山国家地质公园" }, "geometry": { "type": "Point", "coordinates": [ 39692229.154654942452908, 3550123.883368961978704 ] } },
+{ "type": "Feature", "properties": { "NAME": "栖霞山国家森林公园" }, "geometry": { "type": "Point", "coordinates": [ 39685023.531421162188053, 3561270.916579069104046 ] } },
+{ "type": "Feature", "properties": { "NAME": "紫金山国家森林公园" }, "geometry": { "type": "Point", "coordinates": [ 39674058.249270468950272, 3550223.807702897582203 ] } },
+{ "type": "Feature", "properties": { "NAME": "南京禄口国际机场" }, "geometry": { "type": "Point", "coordinates": [ 39677172.585553757846355, 3514231.987820296082646 ] } },
+{ "type": "Feature", "properties": { "NAME": "江苏江宁汤山方山国家地质公园" }, "geometry": { "type": "Point", "coordinates": [ 39676586.786252729594707, 3532729.455689611379057 ] } },
+{ "type": "Feature", "properties": { "NAME": "江苏长江新济洲国家湿地公园" }, "geometry": { "type": "Point", "coordinates": [ 39644900.893907591700554, 3526159.907181954011321 ] } }
+]
+}

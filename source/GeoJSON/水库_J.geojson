@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "水库_J",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::2363" } },
+"features": [
+{ "type": "Feature", "properties": { "NAME": "老鸦坝水库" }, "geometry": { "type": "Point", "coordinates": [ 39707497.096353389322758, 3499652.001226966734976 ] } },
+{ "type": "Feature", "properties": { "NAME": "安基山水库" }, "geometry": { "type": "Point", "coordinates": [ 39695022.967705816030502, 3553648.231115758884698 ] } }
+]
+}

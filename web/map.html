@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="leaflet\leaflet.css"/>
+ <script src="leaflet\leaflet.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/leaflet-geoman-postgis/dist/leaflet-geoman-postgis.min.js"></script>
+ <!-- <script> var tdtUrl = 'http://{s}.tianditu.gov.cn/{layer}_{proj}/wmts?service=WMTS&request=GetTile&version=1.0.0&tilematrix={z}&tilerow={y}&tilecol={x}&style=default&format=tiles&tk={key}';
+  var tdtKey = '382955e6b2139c90c0f30cbca600caaf';</script> -->
+ <!-- <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
+<script src="https://openlayers.org/en/v4.6.5/build/ol.js"></script> -->
+<script src="https://unpkg.com/leaflet-wfst@0.2.0/dist/leaflet-wfst.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet-ajax/dist/leaflet.ajax.min.js"></script>
+
+</head>
+<body>
+  <div id="map" style="height: 600px;;"></div>
+  
+  <label for="input">请输入：</label>
+	<input type="text" id="param1">
+	<button id="submit">提交</button>
+
+  <script>
+    var map = L.map('map', {
+   preferCanvas: true,
+     crs: L.CRS.EPSG4326,
+     minZoom: 3,
+     maxZoom: 20,
+     center: [32, 119],
+     zoom: 9,
+ });
+ L.tileLayer('http://t1.tianditu.com/vec_c/wmts?layer=vec&style=default&tilematrixset=c&Service=WMTS&Request=GetTile&Version=1.0.0&Format=tiles&TileMatrix={z}&TileCol={x}&TileRow={y}&tk=382955e6b2139c90c0f30cbca600caaf', {
+         maxZoom: 20,
+         tileSize: 256,
+         zoomOffset: 1,
+
+     }).addTo(map);  
+    L.tileLayer('http://t1.tianditu.com/cva_c/wmts?layer=cva&style=default&tilematrixset=c&Service=WMTS&Request=GetTile&Version=1.0.0&Format=tiles&TileMatrix={z}&TileCol={x}&TileRow={y}&tk=382955e6b2139c90c0f30cbca600caaf', {
+         maxZoom: 20,
+         tileSize: 256,
+         zoomOffset: 1,
+
+     }).addTo(map);  
+     
+//     L.tileLayer.wms('http://localhost:8080/geoserver/wms', {
+//     layers: 'nj:NJ',
+//     format: 'image/png',
+//     transparent: true
+// }).addTo(map);
+$.getJSON("output.geojson", function(data) {
+  // 将数据添加到地图上
+  L.geoJSON(data).addTo(map);
+});
+
+var wfstLayer = L.geoJson(null, {    onEachFeature: function(feature, layer) {        layer.bindPopup('State: ' + feature.properties.STATE_NAME);    }}).addTo(map);var wfst = new L.WFST({    url: url,    typeNS: 'topp',    typeName: 'NJ:nj',    crs: L.CRS.EPSG4326,    geometryField: 'the_geom'});wfst.load().then(function() {    wfstLayer.addLayer(wfst);});
+// L.tileLayer('http://api.map.baidu.com/customimage/tile?&x={x}&y={y}&z={z}&udt=20191015&scale=1&ak=O0uXLBYn1n9Nd8L5LiYMrdS53wPKn7d0&customid=midnight', {
+// 			maxZoom: 18,
+// 			attribution: 'Map data &copy; <a href="http://map.baidu.com">Baidu</a>',
+// 			subdomains: ['0', '1', '2'],
+// 			tms: true
+// 		}).addTo(map);
+// var postgisLayer = L.postgisGeoJSON('http://localhost:8080/geoserver/wfs', {
+//     typeName: 'nj:行政区',
+//     geometryField: 'geom',
+//     style: function(feature) {
+//         return {
+//             color: 'red',
+//             weight: 2
+//         };
+//     }
+// }).addTo(map);
+</script>
+
+<script>
+  	$(document).ready(function(){
+			$("#submit").click(function(){
+				var data = {
+					"param1": $("#param1").val()
+				};
+				$.ajax({
+					type: "POST",
+					url: "test.py",
+					data: data,
+					success: function(result){
+						$("#result").html(result);
+					}
+				});
+			});
+		});
+</script>
+
+<!-- openlayer -->
+
+<!-- <div id="map"style="height: 600px;;"></div>
+
+<script>
+var map2 = new ol.Map({
+  target: 'map',
+  layers: [
+    new ol.layer.Tile({
+      source: new ol.source.OSM()
+    })
+  ],
+  view: new ol.View({
+    center: ol.proj.fromLonLat([119,32]),
+    zoom: 9
+  })
+});
+var vectorLayer = new ol.layer.Vector({
+  source: new ol.source.Vector({
+    format: new ol.format.GeoJSON(),
+    url: 'http://localhost:8080/geoserver/wfs?service=WFS&' +
+        'version=1.1.0&request=GetFeature&typename=nj:行政区&' +
+        'outputFormat=application/json&srsname=EPSG:4490'
+  })
+});
+var geoserverLayer = new ol.layer.Tile({
+  source: new ol.source.TileWMS({
+    url: 'http://localhost:8080/geoserver/wms',
+    params: {'LAYERS': 'nj:行政区'},
+    serverType: 'geoserver'
+  })
+});
+map2.addLayer(vectorLayer);
+
+var select = new ol.interaction.Select({
+  condition: ol.events.condition.click
+});
+map2.addInteraction(select);-->
+  <!-- </script> -->
+
+</body>
+</html>
