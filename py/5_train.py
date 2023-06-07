@@ -27,14 +27,13 @@ if __name__ == '__main__':
     logger.info("running %s" % ' '.join(sys.argv))
 
     # inp为输入语料, outp1 为输出模型, outp2为原始c版本word2vec的vector格式的模型
-    fdir = 'D:\\Doc\\ChatGIS\\'#输入自己的根目录
-    inp = fdir + 'wikisimple.txt'
+    fdir = 'D:\\Doc\\ChatGIS\\model\\'#输入自己的根目录
+    inp ='D:\Doc\ChatGIS\wikisimple.txt'
     outp1 = fdir + 'wiki.zh.text.model'
     outp2 = fdir + 'wiki.zh.text.vector'
 
     # 训练skip-gram模型
-    model = Word2Vec(LineSentence(inp), window=5, min_count=5,
-                     workers=multiprocessing.cpu_count())
+    model = Word2Vec(LineSentence(inp), window=5, min_count=10,vector_size=200,workers=multiprocessing.cpu_count())
 
     # 保存模型
     model.save(outp1)
