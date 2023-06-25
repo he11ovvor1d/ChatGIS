@@ -1,0 +1,112 @@
+老鸦坝水库|||Laoyaba Reservoir
+安基山水库|||Anjishan Reservoir
+江苏六合国家地质公园|||Jiangsu Liuhe National Geopark
+南京江宁汤山国家地质公园|||Nanjing Jiangning Tangshan National Geopark
+栖霞山国家森林公园|||Qixia Mountain National Forest Park
+紫金山国家森林公园|||Zijinshan National Forest Park
+南京禄口国际机场|||Nanjing Lukou International Airport
+江苏江宁汤山方山国家地质公园|||Jiangsu Jiangning Tangshan Fangshan National Geopark
+江苏长江新济洲国家湿地公园|||Jiangsu Yangtze River Xinjizhou National Wetland Park
+程桥街道|||Chengqiao Street
+东沟镇|||Donggou Town
+葛塘街道|||Getang Street
+横梁街道|||Hengliang Subdistrict
+江心洲街道|||Jiangxin Island Street
+金牛湖街道|||Jinniuhu Street
+龙袍街道|||Longpao Subdistrict
+马鞍镇|||Ma'an Town
+马鞍街道|||Ma'an Street
+栖霞街道|||Qixia Street
+麒麟街道|||Qilin Street
+汤泉街道|||Tangquan Street
+汤山街道|||Tangshan Street
+龙池街道|||Longchi Street
+星甸镇|||Xingdian Town
+冶山街道|||Yeshan Street
+长芦街道|||Changlu Street
+竹镇镇|||Zhuzhen Town
+送驾村|||Delivery Village
+顶山街道|||Dingshan Street
+白马镇|||Whitehorse 
+东坝镇|||Dongba Town
+东屏镇|||Dongping Town
+古柏镇|||Cooperstown 
+固城镇|||Gucheng Town
+洪蓝镇|||Honglan Town
+晶桥镇|||Jingqiao Town
+漆桥镇|||Qiqiao Town
+桥林街道|||Qiaolin Street
+石湫镇|||Shiqiu Town
+桠溪镇|||Yaxi Town
+阳江镇|||Yangjiang Town
+柘塘镇|||Zhetang Town
+滨江居委会|||Binjiang Neighborhood Committee
+茶岗村|||Chagang Village
+茶棚村|||Chapeng Village
+傅家坛居委会|||Fujiatan Neighborhood Committee
+高塘村|||Gaotang Village
+杭村居委会|||Hangzhou Village Neighborhood Committee
+机场路居委会|||Airport Road Neighborhood Committee
+姜家村|||Jiangjia Village
+南山湖居委会|||Nanshan Lake Neighborhood Committee
+沙塘庵居委会|||Shatang'an Neighborhood Committee
+西阳居委会|||Xiyang Neighborhood Committee
+新农居委会|||New Rural Residents' Committee
+永阳镇|||Yongyang Town
+淳溪镇|||Chunxi Town
+梅山街道|||Meishan Street
+和凤镇|||Hefeng Town
+砖墙镇|||Brick Wall Town
+新桥河|||Xinqiao River
+板桥河|||Banqiao River
+西索墅河|||Xisuoshu River
+秦淮新河|||Qinhuai New River
+解溪河|||Jiexi River
+石碛河|||Shiqi River
+汤水河|||Tangshui River
+东十里长沟|||Dongshili Changgou
+新禹河|||Xinyu River
+九乡河|||Jiuxiang River
+黄木河|||Huangmu River
+皂河|||Zaohe
+江宁河|||Jiangning River
+永胜河|||Yongsheng River
+秦淮河|||Qinhuai River
+滁河|||Chuhe River
+三江河|||Three Rivers
+牛耳港河|||Niu'ergang River
+溧水河|||Lishui River
+云台山河|||Yuntai Mountain and River
+南河|||Nanhe River
+运粮河|||Grain Transport River
+夹江|||Jiajiang
+马汊河|||Macha River
+岳子河|||Yuezi River
+划子口河|||Chuanzikou River
+新篁河|||Xinhuang River
+八百河|||EightHundred Rivers
+四柳河|||Siliu River
+百家湖|||Baijia Lake
+公塘湖|||Gongtang Reservoir
+中山湖|||Zhongshan Reservoir
+方便湖|||Convenient Reservoir
+卧龙湖|||Wolong Reservoir
+固城湖|||Gucheng Lake
+石臼湖|||Shijiu Lake
+九龙湖|||Kowloon Lake
+河王坝湖|||Hewangba Reservoir
+山湖|||Shanhu Reservoir
+金牛山湖|||Jinniushan Reservoir
+玄武湖|||Xuanwu Lake
+长江|||Yangtze River
+六合区|||Luhe District
+栖霞区|||Qixia District
+玄武区|||Xuanwu District
+鼓楼区|||Gulou District
+高淳区|||Gaochun District
+溧水区|||Lishui District
+建邺区|||Jianye District
+秦淮区|||Qinhuai District
+雨花台区|||Yuhuatai District
+江宁区|||Jiangning District
+浦口区}|||Pukou District

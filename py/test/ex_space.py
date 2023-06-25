@@ -1,6 +1,6 @@
 
 # 打开原始文件和新文件
-with open('C:\\Users\\10675\\Desktop\\news.txt', 'r', encoding='utf-8') as f1, open('C:\\Users\\10675\\Desktop\\outputnews.txt', 'w', encoding='utf-8') as f2:
+with open('C:.txt', 'r', encoding='utf-8') as f1, open('C:.txt', 'w', encoding='utf-8') as f2:
     # 逐行读取原始文件内容
     for line in f1:
         # 去除每行的空格和换行符

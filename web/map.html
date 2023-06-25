@@ -1,78 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
- <script src="https://cdn.jsdelivr.net/npm/leaflet-geoman-postgis/dist/leaflet-geoman-postgis.min.js"></script>
-<script src="https://unpkg.com/leaflet-wfst@0.2.0/dist/leaflet-wfst.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
 </head>
 <body>
-  <div id="map" style="height: 700px;;"></div>
-  
-  <label for="input">请输入：</label>
-	<input type="text" id="param1">
-	<button id="submit">提交</button>
 
+  <div id="map" style="height: 700px;">
+  <img src="legend.png" style="width:100px;height:150px;opacity:0.9;position: absolute;bottom: 0;right: 1;z-index: 1000;">
+  </div>
+  <label for="input">请输入：</label>
+	<input type="text" id="param1" style="width:200px;">
+	<button id="submit1">t5</button>
+  <button id="submit2">Openai</button>
   <script>
     var map = L.map('map', {
-   preferCanvas: true,
+     preferCanvas: true,
      crs: L.CRS.EPSG4326,
-     minZoom: 3,
-     maxZoom: 20,
-     center: [32, 119],
-     zoom: 9,
- });
- 
- L.tileLayer('http://t1.tianditu.com/vec_c/wmts?layer=vec&style=default&tilematrixset=c&Service=WMTS&Request=GetTile&Version=1.0.0&Format=tiles&TileMatrix={z}&TileCol={x}&TileRow={y}&tk=382955e6b2139c90c0f30cbca600caaf', {
+     minZoom: 8,
+     maxZoom: 15,
+     center: [32.06465, 118.80242],
+     zoom: 8,
+    }).setMaxBounds(L.latLngBounds(L.latLng(31, 118.5), L.latLng(33,119.2)));
+
+    L.tileLayer('http://t1.tianditu.com/vec_c/wmts?layer=vec&style=default&tilematrixset=c&Service=WMTS&Request=GetTile&Version=1.0.0&Format=tiles&TileMatrix={z}&TileCol={x}&TileRow={y}&tk=382955e6b2139c90c0f30cbca600caaf', {
          maxZoom: 20,
          tileSize: 256,
          zoomOffset: 1,
+    }).addTo(map);  
 
-     }).addTo(map);  
     L.tileLayer('http://t1.tianditu.com/cva_c/wmts?layer=cva&style=default&tilematrixset=c&Service=WMTS&Request=GetTile&Version=1.0.0&Format=tiles&TileMatrix={z}&TileCol={x}&TileRow={y}&tk=382955e6b2139c90c0f30cbca600caaf', {
          maxZoom: 20,
          tileSize: 256,
          zoomOffset: 1,
+    }).addTo(map);  
 
-     }).addTo(map);  
-
-  L.tileLayer.wms('http://localhost:8080/geoserver/wms', {
+    L.tileLayer.wms('http://localhost:8080/geoserver/wms', {
     layers: 'nj:NJ',
     format: 'image/png',
     transparent: true
-  }).addTo(map);
-  var geojsonLayer = L.geoJSON().addTo(map);
-  $("#submit").click(function(){
-  geojsonLayer.clearLayers();
-  executeQuery(document.getElementById("param1").value);
-  }
-);
+    }).addTo(map);
 
+    var geojsonLayer = L.geoJSON(null, {
+    style: function (feature) {
 
-function executeQuery(nl) {
-  // 创建一个FormData对象，用于包装POST请求的参数
-  var formData = new FormData();
-  formData.append('data', nl);
-  // 发送POST请求到API端点
-  fetch('http://localhost:8000/process_data', {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => response.json())
-  .then(
-    json => {
-    json.features.forEach(function(feature){
-      geojsonLayer.addData(feature)
+    if(feature.geometry.type === 'LineString'||feature.geometry.type === 'MultiLineString')
+    {
+      return {
+        color: feature.clicked ?'yellow' : 'red',
+        weight: 5
+      };
+    } 
+    else{
+      return {
+        fillColor: feature.clicked ? 'red' : 'skyblue',
+        fillOpacity: 0.4,
+        color: 'green',
+        weight: 0.5
+      };
+    }
+    },
+   onEachFeature: function (feature, layer) {
+    // 为每个Feature添加点击事件
+    layer.on('click', function () {
+      // 标记点击状态
+    geojsonLayer.eachLayer(function (layer) {
+    layer.feature.clicked = false;});
+    feature.clicked = !feature.clicked;
+      // 重新绘制图层以更新样式
+    geojsonLayer.setStyle(geojsonLayer.options.style);
+    });
+    layer.bindPopup(feature.properties.name);
+    }}).addTo(map);
+
+    function mapClickHandler() {
+     // 取消选中状态
+     geojsonLayer.eachLayer(function (layer) {
+      layer.feature.clicked = false;
+     });
+     // 重新绘制图层以更新样式
+     geojsonLayer.setStyle(geojsonLayer.options.style);
+    }
+
+    map.on('click', mapClickHandler);
+    //提交表单
+    $("#submit1").click(function(){
+    geojsonLayer.clearLayers();
+    t5_api(document.getElementById("param1").value);
+    });
+     //提交表单
+     $("#submit2").click(function(){
+    geojsonLayer.clearLayers();
+    openai_api(document.getElementById("param1").value);
+    });
+    //设置缩放大小
+    function padLatLngBounds(bounds, padding) {
+      var sw = bounds.getSouthWest();
+      var ne = bounds.getNorthEast();
+      var latDiff = Math.abs(sw.lat - ne.lat+1) * padding;
+      var lngDiff = Math.abs(sw.lng - ne.lng+1) * padding;
+      var newSw = L.latLng(sw.lat - latDiff, sw.lng - lngDiff);
+      var newNe = L.latLng(ne.lat + latDiff, ne.lng + lngDiff);
+      return L.latLngBounds(newSw, newNe);
+    }
+
+    function t5_api(nl) { 
+      // 创建一个FormData对象，用于包装POST请求的参数
+      var formData = new FormData();
+      formData.append('data', nl);
+      // 发送POST请求到API端点
+      fetch('http://localhost:8000/t5', {
+        method: 'POST',
+        body: formData
       })
-      map.fitBounds(geojsonLayer.getBounds());
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-}
+      .then(response => response.json())
+      .then(data => {
+        if (typeof data === "object"&&data.features.length !== 0) {
+      data.features.forEach(function(feature){
+          geojsonLayer.addData(feature)
+          })
+          map.fitBounds(padLatLngBounds(geojsonLayer.getBounds(),0.05));
+    } else {if (typeof data === "object"&&data.features.length === 0){alert("没有找到您要查询的结果，请再试一次")}else{
+        alert(data)
+    }
+         
+      }})
+      .catch(error => {
+        alert("不太明白您的意思，请再试试")
+      });
+    }
+    function openai_api(nl) {
+      // 创建一个FormData对象，用于包装POST请求的参数
+      var formData = new FormData();
+      formData.append('data', nl);
+      // 发送POST请求到API端点
+      fetch('http://localhost:8000/Openai', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (typeof data === 'object' && data.features.length !== 0) {
+      data.features.forEach(function(feature){
+          geojsonLayer.addData(feature)
+          })
+          map.fitBounds(padLatLngBounds(geojsonLayer.getBounds(),0.05));
+    } else {if (typeof data === 'object' &&data.features.length === 0){alert("没有找到您要查询的结果，请再试一次")}else{
+        alert(data)
+    }
+         
+      }})
+      .catch(error => {
+        alert("不太明白您的意思，请再试试")
+      });
+    }
 </script>
 </body>
 </html>
